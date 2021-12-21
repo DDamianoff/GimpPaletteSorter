@@ -5,6 +5,7 @@
         [V] Parse Hex to RGB.
         [ ] Parse RGB to HSL.
         [ ] Sort HSL.
+        [ ] Implement the "Color" class (with RGB, hex and HSL)
         [ ] Express RGB/HSL as GIMP's color format.
         [ ] build the palette file.
 #>
