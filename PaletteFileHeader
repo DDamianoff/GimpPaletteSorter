@@ -1,3 +1,4 @@
 GIMP Palette
 Name: Generic generated palette
-Columns: 32`n# python3 -c 'l=range(0, 0xf, 2); [print(a*17,b*17,c*17) for a in l for b in l for c in l]'
+Columns: 32
+# python3 -c 'l=range(0, 0xf, 2); [print(a*17,b*17,c*17) for a in l for b in l for c in l]'
