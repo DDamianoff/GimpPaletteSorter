@@ -24,6 +24,19 @@ class RGB {
     }
 }
 
+class HSL {
+    [int]$Hue           = 0
+    [int]$Saturation    = 0
+    [int]$Lightness     = 0
+
+    HSL($hue,$saturation,$lightness){
+        $this.$Hue          = $hue;
+        $this.$Saturation   = $saturation;
+        $this.$Lightness    = $lightness;
+    }
+}
+
+
 <#
     TODO: simplify and integrate in RGB constructor.
 #>
