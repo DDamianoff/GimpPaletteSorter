@@ -10,6 +10,13 @@
         [ ] build the palette file.
 #>
 
+class Color {
+    [string]$HEX;
+    [RGB]$RGB;
+    [HSL]$HSL;
+}
+
+
 class RGB {
     <#
         TODO: Try to encapsulate.
@@ -41,25 +48,7 @@ class HSL {
 <#
     TODO: simplify and integrate in RGB constructor.
 #>
-function ConvertTo-Rgb {
-    param(  [Parameter(ParameterSetName = "HexValue", position = 0)]
-            [ValidateScript( {$_ -match '[A-Fa-f0-9]{6}'})]
-            [string]$HexValue)
 
-        if ($HexValue[0] -eq "#") 
-        {
-            Set-Variable -Name HexValue -Value $HexValue.Substring(1,6);
-        }
-        
-        New-Variable -Name red      -Value ([int]($hexValue.Substring(0,2)));
-        New-Variable -Name green    -Value ([int]($hexValue.Substring(2,2)));
-        New-Variable -Name blue     -Value ([int]($hexValue.Substring(4,2)));
-
-        <#
-            TODO: change this by "new-objet" syntax.
-        #>
-        return [RGB]::new($red,$green,$blue);
-}
 
 function ConvertTo-Hsl {
     param (
