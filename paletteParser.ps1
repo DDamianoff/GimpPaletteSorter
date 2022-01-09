@@ -206,8 +206,9 @@ function Start-Main {
                     -Verbose                     ;
 }
 
+$test = [Color]::new("#FFAABB");
 
-Start-Main;
+#Start-Main;
 <#
  #  set colors in file
  #>
