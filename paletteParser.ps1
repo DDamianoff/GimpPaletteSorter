@@ -172,10 +172,10 @@ class HSL {
 
 function Start-Main {
     New-Variable    -Name           header                                              `
-                -Description    "List of strings. Valid header for GIMP Palette"    `
-                -Visibility     Public                                              `
-            #   -Option         ReadOnly                                            `
-                -Value          (Get-Content -Path ./PaletteFileHeader)             ;
+                    -Description    "List of strings. Valid header for GIMP Palette"    `
+                    -Visibility     Public                                              `
+                    -Option         ReadOnly                                            `
+                    -Value          (Get-Content -Path ./PaletteFileHeader)             ;
 
     New-Variable    -Name           hexValues                                               `
                     -Description    "Array of strings. Spected hex colors, one per line."   `
