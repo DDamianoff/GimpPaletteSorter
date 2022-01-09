@@ -17,8 +17,6 @@ function Convert-ToHsl {
     New-Variable -Name Hue;
     New-Variable -Name Saturation;
     New-Variable -Name Lightness;
-
-    New-Variable -Name Segment;
     New-Variable -Name Chroma;
 
     <# ensure values are int #>
@@ -78,6 +76,8 @@ function Convert-ToHsl {
                                 -Value  0   ;
             }
         }
+
+        Remove-Variable -Name "Switch";
     }
 
 
