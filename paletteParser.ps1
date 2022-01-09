@@ -44,34 +44,30 @@ class Color {
         [double]$Green  = $RgbValue.Green;
         [double]$Blue   = $RgbValue.Blue;
 
-        [int]$Hue                =  ([int]0)     ;
-        [double]$Saturation      =  ([double]0)  ;
-        [double]$Lightness       =  ([double]0)  ;
-        [double]$Chroma          =  ([double]0)  ;
+        [int]   $Hue             = 0;
+        [double]$Saturation      = 0;
+        [double]$Lightness       = 0;
+        [double]$Chroma          = 0;
 
-        <# ensure values are int #>
-        Set-Variable    -Name   Red             `
-                        -Value  ([int]$Red)     ;
+        [double]$Maximum = 0;
+        [double]$Minimum = 0;
 
-        Set-Variable    -Name   Green           `
-                        -Value  ([int]$Green)   ;
-
-        Set-Variable    -Name   Blue            `
-                        -Value  ([int]$Blue)    ;
-
-
-        Set-Variable    -Name   Red             `
-                        -Value  ($Red   / 256)  ;
+                        #[int] for ignore floating values if are provided.
+        Set-Variable    -Name   Red                     `
+                        -Value  (([int]$Red)   / 256)   ;
         
-        Set-Variable    -Name   Green           `
-                        -Value  ($Green / 256)  ;
+        Set-Variable    -Name   Green                   `
+                        -Value  (([int]$Green) / 256)   ;
         
-        Set-Variable    -Name   Blue            `
-                        -Value  ($Blue  / 256)  ;
+        Set-Variable    -Name   Blue                    `
+                        -Value  (([int]$Blue)  / 256)   ;
 
 
-        [double]$Maximum = (@($Red,$Green,$Blue) | Measure-Object -Maximum).Maximum;
-        [double]$Minimum = (@($Red,$Green,$Blue) | Measure-Object -Minimum).Minimum;
+        Set-Variable    -Name Maximum                                                    `
+                        -Value ((@($Red,$Green,$Blue) | Measure-Object -Maximum).Maximum);
+
+        Set-Variable    -Name Minimum                                                    `
+                        -Value ((@($Red,$Green,$Blue) | Measure-Object -Minimum).Minimum);
         
         Set-Variable    -Name   Chroma                  `
                         -Value  ($Maximum - $Minimum)   ;
@@ -205,14 +201,6 @@ function Start-Main {
                     -Force                       `
                     -Verbose                     ;
 }
-$colorin = [Color]::new("ffaaff");
-
 
 #Start-Main;
-<#
- #  set colors in file
- #>
-# foreach ($hexValue in $hexValues) {
-#     [RGB]$color = Convert-Color -Hex $hexValue.Substring(1,6)
-#     "$($color.Red)`t$($color.Green)`t$($color.Blue)`tUntitled" | Out-File -Append -FilePath "./generatedPalette.gpl"
-
+$colorito = [Color]::new("#4E2C6D");
