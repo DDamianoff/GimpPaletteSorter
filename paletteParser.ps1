@@ -28,14 +28,14 @@ class Color {
             $HexValue = $HexValue.Substring(1,6);
         }
         
-        [int]$this.Red    = [Convert]::ToInt16($hexValue.Substring(0,2),16);
-        [int]$this.Green  = [Convert]::ToInt16($hexValue.Substring(2,2),16);
-        [int]$this.Blue   = [Convert]::ToInt16($hexValue.Substring(4,2),16);
+        [int]$Red    = [Convert]::ToInt16($hexValue.Substring(0,2),16);
+        [int]$Green  = [Convert]::ToInt16($hexValue.Substring(2,2),16);
+        [int]$Blue   = [Convert]::ToInt16($hexValue.Substring(4,2),16);
 
         <#
             TODO: change this by "new-objet" syntax.
         #>
-        return [RGB]::new($this.Red,$this.Green,$this.Blue);
+        return [RGB]::new($Red,$Green,$Blue);
     }
 
     [HSL]ConvertToHsl([RGB]$RgbValue) {
@@ -153,13 +153,13 @@ class RGB {
 
 class HSL {
     [int]$Hue           = 0
-    [int]$Saturation    = 0
-    [int]$Lightness     = 0
+    [double]$Saturation    = 0
+    [double]$Lightness     = 0
 
     HSL($hue,$saturation,$lightness){
-        $this.$Hue          = $hue;
-        $this.$Saturation   = $saturation;
-        $this.$Lightness    = $lightness;
+        $this.Hue          = $hue;
+        $this.Saturation   = $saturation;
+        $this.Lightness    = $lightness;
     }
 }
 
@@ -205,8 +205,6 @@ function Start-Main {
                     -Force                       `
                     -Verbose                     ;
 }
-
-$test = [Color]::new("#FFAABB");
 
 #Start-Main;
 <#
