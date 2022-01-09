@@ -109,7 +109,7 @@ class Color {
 
         Set-Variable                                        `
             -Name   Lightness                               `
-            -Value  ([double](($Maximum + $Maximum) / 2))   ;
+            -Value  ([double](($Maximum + $Minimum) / 2))   ;
 
 
 
