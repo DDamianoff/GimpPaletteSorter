@@ -41,7 +41,7 @@ class HSL {
 <#
     TODO: simplify and integrate in RGB constructor.
 #>
-function Convert-ToRgb {
+function ConvertTo-Rgb {
     param(  [Parameter(ParameterSetName = "HexValue", position = 0)]
             [ValidateScript( {$_ -match '[A-Fa-f0-9]{6}'})]
             [string]$HexValue)
@@ -60,6 +60,9 @@ function Convert-ToRgb {
         #>
         return [RGB]::new($red,$green,$blue);
 }
+
+
+
 
 New-Variable    -Name           header                                              `
                 -Description    "List of strings. Valid header for GIMP Palette"    `

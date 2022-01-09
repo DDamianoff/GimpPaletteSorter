@@ -1,6 +1,6 @@
 #!/usr/bin/pwsh
 
-function Convert-ToHsl {
+function ConvertTo-Hsl {
     param (
         [Parameter()]
         [ValidateRange(0,255)]
