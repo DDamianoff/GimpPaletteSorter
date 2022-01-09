@@ -32,16 +32,21 @@ function Convert-ToHsl {
                     -Value  ([int]$Blue)    ;
 
 
-    Set-Variable -Name Red      -Value  ($Red   / 256);
-    Set-Variable -Name Green    -Value  ($Green / 256);
-    Set-Variable -Name Blue     -Value  ($Blue  / 256);
+    Set-Variable    -Name   Red             `
+                    -Value  ($Red   / 256)  ;
+    
+    Set-Variable    -Name   Green           `
+                    -Value  ($Green / 256)  ;
+    
+    Set-Variable    -Name   Blue            `
+                    -Value  ($Blue  / 256)  ;
 
 
     [double]$Maximum = (@($Red,$Green,$Blue) | Measure-Object -Maximum).Maximum;
     [double]$Minimum = (@($Red,$Green,$Blue) | Measure-Object -Minimum).Minimum;
     
-    Set-Variable    -Name      Chroma                   `
-                    -Value     ($Maximum - $Minimum)    ;
+    Set-Variable    -Name   Chroma                  `
+                    -Value  ($Maximum - $Minimum)   ;
 
 
     if ($Chroma -eq 0) {
@@ -100,11 +105,3 @@ function Convert-ToHsl {
 }
 
 Convert-ToHsl -Red 201 -Green 201 -Blue 199
-
-
-
-
-
-
-
-
