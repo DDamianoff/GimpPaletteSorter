@@ -170,40 +170,42 @@ class HSL {
 
 
 
-
-
-New-Variable    -Name           header                                              `
+function Start-Main {
+    New-Variable    -Name           header                                              `
                 -Description    "List of strings. Valid header for GIMP Palette"    `
                 -Visibility     Public                                              `
             #   -Option         ReadOnly                                            `
                 -Value          (Get-Content -Path ./PaletteFileHeader)             ;
 
-New-Variable    -Name           hexValues                                               `
-                -Description    "Array of strings. Spected hex colors, one per line."   `
-                -Value          (Get-Content -Path "./palette.txt")                     ;
+    New-Variable    -Name           hexValues                                               `
+                    -Description    "Array of strings. Spected hex colors, one per line."   `
+                    -Value          (Get-Content -Path "./palette.txt")                     ;
 
 
-<#
-    TODO: check if file exists and prompt user for what
-    want t0do: replace or quit.
-#>
+    <#
+        TODO: check if file exists and prompt user for what
+        want t0do: replace or quit.
+    #>
 
-New-Variable    -Name       resultFileName      `
-                -Value      generatedPalette.gpl`
-                -Option     ReadOnly            ;
+    New-Variable    -Name       resultFileName      `
+                    -Value      generatedPalette.gpl`
+                    -Option     ReadOnly            ;
 
-New-Item        -ItemType   File                `
-                -Name       $resultFileName     ;
-<#
- #  set the header of the palette file.
- #>
+    New-Item        -ItemType   File                `
+                    -Name       $resultFileName     ;
+    <#
+    #  set the header of the palette file.
+    #>
 
-Get-Variable -Name header -ValueOnly | Out-File -FilePath "./generatedPalette.gpl"
+    Get-Variable -Name header -ValueOnly | Out-File -FilePath "./generatedPalette.gpl"
 
-Remove-Item -Path ./generatedPalette.gpl `
-            -Force                       `
-            -Verbose                     ;
+    Remove-Item -Path ./generatedPalette.gpl `
+                -Force                       `
+               -Verbose                     ;
+}
 
+
+Start-Main;
 <#
  #  set colors in file
  #>
