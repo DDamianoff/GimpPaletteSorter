@@ -3,7 +3,7 @@
 <#
     Current state:
         [V] Parse Hex to RGB.
-        [ ] Parse RGB to HSL.
+        [V] Parse RGB to HSL.
         [ ] Sort HSL.
         [ ] Implement the "Color" class (with RGB, hex and HSL)
         [ ] Express RGB/HSL as GIMP's color format.
@@ -162,7 +162,7 @@ function ConvertTo-Hsl {
                         -Value  ([double]($Maximum - $Minimum) / (2 - 2 * $Lightness))  ;
     }
 
-    return @($Hue, $Saturation, $Lightness);
+    return [HSL]::new($Hue,$Saturation,$Lightness);
 }
 
 
