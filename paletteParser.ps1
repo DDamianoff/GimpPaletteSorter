@@ -202,5 +202,4 @@ function Start-Main {
                     -Verbose                     ;
 }
 
-#Start-Main;
-$colorito = [Color]::new("#4E2C6D");
+Start-Main;
