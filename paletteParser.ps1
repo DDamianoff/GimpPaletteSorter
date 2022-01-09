@@ -175,7 +175,7 @@ class HSL {
 New-Variable    -Name           header                                              `
                 -Description    "List of strings. Valid header for GIMP Palette"    `
                 -Visibility     Public                                              `
-                -Option         ReadOnly                                            `
+            #   -Option         ReadOnly                                            `
                 -Value          (Get-Content -Path ./PaletteFileHeader)             ;
 
 New-Variable    -Name           hexValues                                               `
