@@ -44,10 +44,10 @@ class Color {
         [double]$Green  = $RgbValue.Green;
         [double]$Blue   = $RgbValue.Blue;
 
-        $this.Hue;
-        $this.Saturation;
-        $this.Lightness;
-        $this.Chroma;
+        [int]$Hue                =  ([int]0)     ;
+        [double]$Saturation      =  ([double]0)  ;
+        [double]$Lightness       =  ([double]0)  ;
+        [double]$Chroma          =  ([double]0)  ;
 
         <# ensure values are int #>
         Set-Variable    -Name   Red             `
@@ -77,7 +77,7 @@ class Color {
                         -Value  ($Maximum - $Minimum)   ;
 
 
-        if ($this.Chroma -eq 0) {
+        if ($Chroma -eq 0) {
             Set-Variable    -Name   Hue `
                             -Value  0   ;
         }
@@ -86,19 +86,19 @@ class Color {
                 $Red        {
                     Set-Variable                                                    `
                         -Name   Hue                                                 `
-                        -Value  ((60 * (($Green - $Blue) / $this.Chroma)  + 360) % 360)  ;
+                        -Value  ((60 * (($Green - $Blue) / $Chroma)  + 360) % 360)  ;
                 }
 
                 $Green      {
                     Set-Variable                                                    `
                         -Name   Hue                                                 `
-                        -Value  (60 * (($Blue - $Red)   / $this.Chroma)  + 120)          ;
+                        -Value  (60 * (($Blue - $Red)   / $Chroma)  + 120)          ;
                 }
 
                 $Blue       {
                     Set-Variable                                                    `
                         -Name   Hue                                                 `
-                        -Value  (60 * (($Red - $Green)  / $this.Chroma)  + 240)          ; 
+                        -Value  (60 * (($Red - $Green)  / $Chroma)  + 240)          ; 
                 }
 
                 $Minimum    {
@@ -122,16 +122,16 @@ class Color {
                 -Name   Saturation  `
                 -Value  0           ;
         }
-        elseif ($this.Lightness -le 0.5) {
+        elseif ($Lightness -le 0.5) {
             Set-Variable    -Name   Saturation                                              `
-                            -Value  ([double]($Maximum - $Minimum) / (2 * $this.Lightness))      ;
+                            -Value  ([double]($Maximum - $Minimum) / (2 * $Lightness))      ;
         }
-        elseif ($this.Lightness -gt 0.5) {
+        elseif ($Lightness -gt 0.5) {
             Set-Variable    -Name   Saturation                                              `
-                            -Value  ([double]($Maximum - $Minimum) / (2 - 2 * $this.Lightness))  ;
+                            -Value  ([double]($Maximum - $Minimum) / (2 - 2 * $Lightness))  ;
         }
 
-        return [HSL]::new($this.Hue,$this.Saturation,$this.Lightness);
+        return [HSL]::new($Hue,$Saturation,$Lightness);
     }
 }
 
@@ -205,6 +205,8 @@ function Start-Main {
                     -Force                       `
                     -Verbose                     ;
 }
+$colorin = [Color]::new("ffaaff");
+
 
 #Start-Main;
 <#
