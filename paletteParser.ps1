@@ -171,11 +171,11 @@ class HSL {
 
 
 function Start-Main {
-    New-Variable    -Name           header                                              `
-                    -Description    "List of strings. Valid header for GIMP Palette"    `
-                    -Visibility     Public                                              `
-                    -Option         ReadOnly                                            `
-                    -Value          (Get-Content -Path ./PaletteFileHeader)             ;
+    New-Variable    -Name           header                                                  `
+                    -Description    "List of strings. Valid header for GIMP Palette"        `
+                    -Visibility     Public                                                  `
+                    -Option         ReadOnly                                                `
+                    -Value          (Get-Content -Path ./PaletteFileHeader)                 ;
 
     New-Variable    -Name           hexValues                                               `
                     -Description    "Array of strings. Spected hex colors, one per line."   `
@@ -197,11 +197,13 @@ function Start-Main {
     #  set the header of the palette file.
     #>
 
-    Get-Variable -Name header -ValueOnly | Out-File -FilePath "./generatedPalette.gpl"
+    Get-Variable    -Name header                      `
+                    -ValueOnly                        `
+        | Out-File  -FilePath "./generatedPalette.gpl";
 
-    Remove-Item -Path ./generatedPalette.gpl `
-                -Force                       `
-               -Verbose                     ;
+    Remove-Item     -Path ./generatedPalette.gpl `
+                    -Force                       `
+                    -Verbose                     ;
 }
 
 
