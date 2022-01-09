@@ -28,9 +28,9 @@ class Color {
             $HexValue = $HexValue.Substring(1,6);
         }
         
-        [int]$this.Red    = ([int]($hexValue.Substring(0,2)));
-        [int]$this.Green  = ([int]($hexValue.Substring(2,2)));
-        [int]$this.Blue   = ([int]($hexValue.Substring(4,2)));
+        [int]$this.Red    = [Convert]::ToInt16($hexValue.Substring(0,2),16);
+        [int]$this.Green  = [Convert]::ToInt16($hexValue.Substring(2,2),16);
+        [int]$this.Blue   = [Convert]::ToInt16($hexValue.Substring(4,2),16);
 
         <#
             TODO: change this by "new-objet" syntax.
@@ -206,8 +206,9 @@ function Start-Main {
                     -Verbose                     ;
 }
 
+$test = [Color]::new("#FFAABB");
 
-Start-Main;
+#Start-Main;
 <#
  #  set colors in file
  #>
