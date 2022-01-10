@@ -21,7 +21,11 @@ class Color {
         $this.RGB = $this.ConvertToRgb($Hex);
         $this.HSL = $this.ConvertToHsl($this.RGB);
     }
-
+    <#
+    [String]ToString(){
+        return "val: $this.Hex $this.HSL.Hue"
+    }
+    #>
     [RGB]ConvertToRgb([string]$HexValue) {
         if ($HexValue[0] -eq "#") 
         {
@@ -194,9 +198,26 @@ function Start-Main {
     #>
 
     Get-Variable    -Name       header                  `
-        | Out-File  -FilePath   $resultFileName         `
-                    -ValueOnly                          ;
+                    -ValueOnly                          `
+        | Out-File  -FilePath   $resultFileName         ;
 
+
+    New-Variable -name ColorList -Value (New-Object System.Collections.ArrayList);
+
+    foreach ($hex in $HexValues) {
+        $ColorList.Add([Color]::new($hex)) 1> $null
+    }
+
+    Set-Variable    -Name   ColorList                               `
+                    -Value  (                                       `
+                                Get-Variable    -Name ColorList     `
+                                                -ValueOnly          `
+                                | Sort-Object   -Property HSL.Hue   )
+
+    Write-Host "dummy"
+
+
+    
     Remove-Item     -Path $resultFileName               `
                     -Force                              `
                     -Verbose                            ;
