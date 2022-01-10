@@ -183,23 +183,23 @@ function Start-Main {
         want t0do: replace or quit.
     #>
 
-    New-Variable    -Name       resultFileName      `
-                    -Value      generatedPalette.gpl`
-                    -Option     ReadOnly            ;
+    New-Variable    -Name       resultFileName          `
+                    -Value      "generatedPalette.gpl"  `
+                    -Option     ReadOnly                ;
 
-    New-Item        -ItemType   File                `
-                    -Name       $resultFileName     ;
+    New-Item        -ItemType   File                    `
+                    -Name       $resultFileName         ;
     <#
     #  set the header of the palette file.
     #>
 
-    Get-Variable    -Name header                      `
-                    -ValueOnly                        `
-        | Out-File  -FilePath "./generatedPalette.gpl";
+    Get-Variable    -Name header                        `
+                    -ValueOnly                          `
+        | Out-File  -FilePath $resultFileName           ;
 
-    Remove-Item     -Path ./generatedPalette.gpl `
-                    -Force                       `
-                    -Verbose                     ;
+    Remove-Item     -Path $resultFileName               `
+                    -Force                              `
+                    -Verbose                            ;
 }
 
 Start-Main;
