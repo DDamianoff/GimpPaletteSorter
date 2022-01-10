@@ -214,6 +214,12 @@ function Start-Main {
                                                 -ValueOnly          `
                                 | Sort-Object   -Property HSL.Hue   )
 
+    foreach ($Color in $ColorList) {
+        "$($color.RGB.Red)`t$($color.RGB.Green)`t$($color.RGB.Blue)`tUntitled" `
+        | Out-File  -FilePath $resultFileName   `
+                    -Append                     ;
+    }
+    
     Write-Host "dummy"
 
 
