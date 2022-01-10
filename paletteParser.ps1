@@ -4,10 +4,10 @@
     Current state:
         [V] Parse Hex to RGB.
         [V] Parse RGB to HSL.
-        [ ] Sort HSL.
+        [V] Sort HSL.
         [V] Implement the "Color" class (with RGB, hex and HSL)
-        [ ] Express RGB/HSL as GIMP's color format.
-        [ ] build the palette file.
+        [V] Express RGB/HSL as GIMP's color format.
+        [V] build the palette file.
 #>
 
 class Color {
